@@ -6,7 +6,6 @@ import java.util.Properties;
 public class ConfigReader {
     // New Config
     private String token = null;
-
     public ConfigReader(DiscordShell plugin) throws Exception {
         File configFile = new File(plugin.getDataFolder(), "config.properties");
         Properties properties = new Properties();
