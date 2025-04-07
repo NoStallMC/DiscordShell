@@ -1,0 +1,4 @@
+name: DiscordShell
+author: matejkoo
+version: 1
+main: main.java.org.matejko.plugin.DiscordShell
