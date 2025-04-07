@@ -6,7 +6,6 @@
 
 - **Server Command Integration**: Enter server commands directly in a specified Discord channel.
 - **Customizable Permissions**: Control which users can execute commands via the configuration file.
-- **Support for Multiple Intents**: Easily configure your Discord bot with a variety of intents to interact with the server.
 - **Effortless Discord Bot Integration**: Seamlessly link your server with a Discord bot for real-time interaction.
 
 ## Setup
