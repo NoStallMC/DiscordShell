@@ -21,7 +21,7 @@ This plugin is based on the work from the following repositories:
 - [Discord-Bot-Chatbridge](https://github.com/retromcorg/Discord-Bot-Chatbridge)
 - [DiscordCore-4](https://github.com/retromcorg/DiscordCore-4)
 
-A special thanks to **JohnyMuffin** for providing the initial code template, which served as the foundation for this project.
+A special thanks to **JohnyMuffin** for providing the initial code as template, which served as the foundation for this project.
 
 
 ---
