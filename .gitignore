@@ -123,3 +123,7 @@ build.xml
 depend.txt
 /lib
 LICENSE
+rules.txt
+relocate.bat
+/.gradle
+/target

@@ -1,4 +1,4 @@
-package main.java.org.matejko.plugin;
+package main.java.org.matejko.discordshell;
 
 import java.io.*;
 import java.util.Properties;

@@ -1,4 +1,4 @@
-package main.java.org.matejko.plugin;
+package main.java.org.matejko.discordshell;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;

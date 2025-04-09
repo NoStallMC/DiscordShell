@@ -1,4 +1,4 @@
-package main.java.org.matejko.plugin;
+package main.java.org.matejko.discordshell;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Server;

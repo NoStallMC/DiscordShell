@@ -1,4 +1,4 @@
-package main.java.org.matejko.plugin;
+package main.java.org.matejko.discordshell;
 
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.bukkit.Bukkit;
@@ -36,6 +36,13 @@ public class DiscordShell extends JavaPlugin implements Listener {
             Bukkit.getServer().getPluginManager().disablePlugin(plugin);
             return;
         }
+        Boolean Blist = config.getConfigBoolean("list.blacklist");
+        Boolean Wlist = config.getConfigBoolean("list.whitelist");
+        if (Blist != null && Wlist != null && Blist && Wlist) {
+            logInfo(Level.WARNING, "Both blacklist and whitelist are enabled, shutting down.");
+            Bukkit.getServer().getPluginManager().disablePlugin(plugin);
+            return;
+        }
         // Parse intents from config
         List<String> rawIntentList = config.getStringList("intents", Arrays.asList("GUILD_MEMBERS", "DIRECT_MESSAGES", "MESSAGE_CONTENT"));
         ArrayList<GatewayIntent> intents = new ArrayList<>();
@@ -59,7 +66,6 @@ public class DiscordShell extends JavaPlugin implements Listener {
         discordListener = new DiscordListener(plugin);
         discordBot.jda.addEventListener(discordListener);
     }
-
     @Override
     public void onDisable() {
         logInfo(Level.INFO, "Disabling plugin.");
