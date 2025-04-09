@@ -21,6 +21,7 @@ public class DiscordListener extends ListenerAdapter {
         if (event.getMessage().getContentRaw().isEmpty()) {
             return;
         }
+        String content = event.getMessage().getContentRaw();
         //Server Shell Command Execution- ~jkoo
         if (plugin.getConfig().getConfigBoolean("server-shell.enabled") && event.getChannel().getId().equals(plugin.getConfig().getConfigString("server-shell.shell-channel-id"))){
         	List<?> rawList = (List<?>) plugin.getConfig().getConfigOption("server-shell.allowed-users");
@@ -32,6 +33,14 @@ public class DiscordListener extends ListenerAdapter {
             if (!allowedUsers.contains(event.getAuthor().getId())) {
                 event.getChannel().sendMessage(":no_entry_sign: You are not authorized to use the server-shell.").queue();
                 return;
+            }
+            //Blacklist check
+            BlacklistManager blacklist = plugin.getBlacklistManager();
+            if (blacklist.isCommandBlacklisted(content)) {
+            	if (plugin.getConfig().getConfigBoolean("blacklist")) {
+                event.getChannel().sendMessage(":no_entry_sign: This command is blacklisted and cannot be executed.").queue();
+                return;
+            	}
             }
             //Command to execute
             String command = event.getMessage().getContentRaw();

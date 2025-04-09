@@ -20,7 +20,8 @@ public class DiscordShell extends JavaPlugin implements Listener {
     private Config config;
     private DiscordListener discordListener;
     private Integer taskID = null;
-
+    private BlacklistManager blacklistManager;
+    
     @Override
     public void onEnable() {
         plugin = this;
@@ -28,18 +29,12 @@ public class DiscordShell extends JavaPlugin implements Listener {
         pdf = this.getDescription();
         pluginName = pdf.getName();
         log.info("[DiscordShell] is starting up!");
+        this.blacklistManager = new BlacklistManager(this);
         config = new Config(plugin);
         // Load Token from config
         String softToken = config.getString("token", "INSERT_TOKEN_HERE");
         if (softToken == null || softToken.equalsIgnoreCase("INSERT_TOKEN_HERE") || softToken.isEmpty()) {
             logInfo(Level.WARNING, "Failed to find a Discord token in the config file, shutting down.");
-            Bukkit.getServer().getPluginManager().disablePlugin(plugin);
-            return;
-        }
-        Boolean Blist = config.getConfigBoolean("list.blacklist");
-        Boolean Wlist = config.getConfigBoolean("list.whitelist");
-        if (Blist != null && Wlist != null && Blist && Wlist) {
-            logInfo(Level.WARNING, "Both blacklist and whitelist are enabled, shutting down.");
             Bukkit.getServer().getPluginManager().disablePlugin(plugin);
             return;
         }
@@ -71,7 +66,6 @@ public class DiscordShell extends JavaPlugin implements Listener {
         logInfo(Level.INFO, "Disabling plugin.");
         if (discordBot != null) {
             discordBot.jda.removeEventListener(discordListener);
-            
             // Check if taskID is not null before cancelling the task
             if (taskID != null) {
                 Bukkit.getServer().getScheduler().cancelTask(taskID);
@@ -90,6 +84,9 @@ public class DiscordShell extends JavaPlugin implements Listener {
     }
     public DiscordBot getDiscordBot() {
         return discordBot;
+    }
+    public BlacklistManager getBlacklistManager() {
+        return this.blacklistManager;
     }
     // The DiscordBot class from DiscordCore
     public static class DiscordBot {

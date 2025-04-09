@@ -23,9 +23,7 @@ public class Config extends Configuration {
         generateConfigOption("token", "INSERT_TOKEN_HERE");
         generateConfigOption("intents", Arrays.asList("GUILD_MEMBERS", "DIRECT_MESSAGES", "MESSAGE_CONTENT"));
         //Blacklist
-        generateConfigOption("list.blacklist", false);
-        generateConfigOption("list.whitelist", false);
-        generateConfigOption("list.info", "Chooes only one!");
+        generateConfigOption("blacklist", false);
     }
     private void generateConfigOption(String key, Object defaultValue) {
         if (this.getProperty(key) == null) {
